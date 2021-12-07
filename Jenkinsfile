@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_HUB_USERNAME = credentials('docker_username')
         DOCKER_HUB_PASSWORD = credentials('1db2efb0-c583-4b86-a773-e1023ed3f15d')
-        CURRENT_COMMIT = getCommitHash()
+        CURRENT_COMMIT = "latest"
     }
 
     stages {
