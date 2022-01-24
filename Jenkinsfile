@@ -2,9 +2,9 @@ pipeline {
     agent none
 
     environment {
-        DOCKER_HUB_USERNAME = credentials('docker_username')
-        DOCKER_HUB_PASSWORD = credentials('1db2efb0-c583-4b86-a773-e1023ed3f15d')
-        CURRENT_COMMIT = "latest"
+        DOCKER_HUB_USERNAME = credentials('DOCKER_HUB_USERNAME')
+        DOCKER_HUB_PASSWORD = credentials('DOCKER_HUB_TOKEN')
+        CURRENT_COMMIT = getCommitHash()
     }
 
     stages {
@@ -39,6 +39,6 @@ pipeline {
 
 def getCommitHash() {
     node {
-        return sh(script: 'git rev-parse --short HEAD', returnStdout: true)
+        return sh(script: 'git rev-parse --short HEAD || echo latest', returnStdout: true)
     }
 }
